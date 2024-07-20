@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Calculator with NCERT Solutions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5dc; /* Beige background */
+            margin: 0;
+            padding: 0;
+            color: #000000; /* Text color for better contrast */
+        }
+
+        header {
+            background-color: rgba(98, 0, 234, 0.8);
+            color: #FFFFFF;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 1rem;
+        }
+
+        nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 2rem auto;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            padding: 1rem;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .calculator #display {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            background: #F1F3F4;
+            font-size: 1.8rem;
+            text-align: right;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .calculator .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calculator .btn {
+            padding: 1rem;
+            background: #6200EA;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            font-weight: bold;
+        }
+
+        .calculator .btn:hover {
+            background: #3700B3;
+            transform: scale(1.1); /* Pop-out effect */
+        }
+
+        .calculator .operator {
+            background: #03DAC5;
+        }
+
+        .calculator .operator:hover {
+            background: #018786;
+            transform: scale(1.1); /* Pop-out effect */
+        }
+
+        footer {
+            background-color: rgba(98, 0, 234, 0.8);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 0.5rem;
+            position: static;
+            width: 100%;
+            bottom: 0;
+            font-weight: bold;
+        }
+
+        .ncert-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .dropbtn {
+            background-color: #6200EA;
+            color: white;
+            padding: 12px 16px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dropbtn:hover {
+            background-color: #3700B3;
+            transform: scale(1.1); /* Pop-out effect */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #FFFFFF;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .dropdown-content a {
+            color: #6200EA;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #3700B3; /* Text color on hover */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3700B3;
+            transform: scale(1.1); /* Pop-out effect */
+        }
+
+        h2 {
+            font-weight: bold;
+        }
+
+        p {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Universal Calculator</h1>
+        <nav>
+            <ul>
+                <li><a href="#calculator">Calculator</a></li>
+                <li><a href="#instructions">Instructions</a></li>
+                <li><a href="#ncert">NCERT Solutions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calculator">
+            <h2>Calculator</h2>
+            <div class="calculator">
+                <input type="text" id="display" disabled>
+                <div class="buttons">
+                    <button class="btn" onclick="appendToDisplay('7')">7</button>
+                    <button class="btn" onclick="appendToDisplay('8')">8</button>
+                    <button class="btn" onclick="appendToDisplay('9')">9</button>
+                    <button class="btn operator" onclick="appendToDisplay('/')">/</button>
+                    <button class="btn" onclick="appendToDisplay('4')">4</button>
+                    <button class="btn" onclick="appendToDisplay('5')">5</button>
+                    <button class="btn" onclick="appendToDisplay('6')">6</button>
+                    <button class="btn operator" onclick="appendToDisplay('*')">*</button>
+                    <button class="btn" onclick="appendToDisplay('1')">1</button>
+                    <button class="btn" onclick="appendToDisplay('2')">2</button>
+                    <button class="btn" onclick="appendToDisplay('3')">3</button>
+                    <button class="btn operator" onclick="appendToDisplay('-')">-</button>
+                    <button class="btn" onclick="appendToDisplay('0')">0</button>
+                    <button class="btn" onclick="appendToDisplay('.')">.</button>
+                    <button class="btn operator" onclick="calculate()">=</button>
+                    <button class="btn operator" onclick="appendToDisplay('+')">+</button>
+                    <button class="btn operator" onclick="clearDisplay()">C</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="instructions">
+            <h2>Instructions</h2>
+            <p>Use this calculator to solve mathematical problems. Select the NCERT Solutions tab for answers to all questions from NCERT books for classes 6-10.</p>
+        </section>
+
+        <section id="ncert">
+            <h2>NCERT Solutions</h2>
+            <p>Select your class to view the solutions:</p>
+            <div class="ncert-links">
+                <div class="dropdown">
+                    <button class="dropbtn">Class 6</button>
+                    <div class="dropdown-content">
+                        <a href="https://byjus.com/ncert-solutions-class-6-maths/" target="_blank">Math</a>
+                        <a href="https://byjus.com/ncert-solutions-class-6-english/" target="_blank">English</a>
+                        <a href="https://byjus.com/ncert-solutions-class-6-science/" target="_blank">Science</a>
+                        <a href="https://byjus.com/ncert-solutions-class-6-social-science/" target="_blank">Social Science</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Class 7</button>
+                    <div class="dropdown-content">
+                        <a href="https://byjus.com/ncert-solutions-class-7-maths/" target="_blank">Math</a>
+                        <a href="https://byjus.com/ncert-solutions-class-7-english/" target="_blank">English</a>
+                        <a href="https://byjus.com/ncert-solutions-class-7-science/" target="_blank">Science</a>
+                        <a href="https://byjus.com/ncert-solutions-class-7-social-science/" target="_blank">Social Science</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Class 8</button>
+                    <div class="dropdown-content">
+                        <a href="https://byjus.com/ncert-solutions-class-8-maths/" target="_blank">Math</a>
+                        <a href="https://byjus.com/ncert-solutions-class-8-english/" target="_blank">English</a>
+                        <a href="https://byjus.com/ncert-solutions-class-8-science/" target="_blank">Science</a>
+                        <a href="https://byjus.com/ncert-solutions-class-8-social-science/" target="_blank">Social Science</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Class 9</button>
+                    <div class="dropdown-content">
+                        <a href="https://byjus.com/ncert-solutions-class-9-maths/" target="_blank">Math</a>
+                        <a href="https://byjus.com/ncert-solutions-class-9-english/" target="_blank">English</a>
+                        <a href="https://byjus.com/ncert-solutions-class-9-science/" target="_blank">Science</a>
+                        <a href="https://byjus.com/ncert-solutions-class-9-social-science/" target="_blank">Social Science</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Class 10</button>
+                    <div class="dropdown-content">
+                        <a href="https://byjus.com/ncert-solutions-class-10-maths/" target="_blank">Math</a>
+                        <a href="https://byjus.com/ncert-solutions-class-10-english/" target="_blank">English</a>
+                        <a href="https://byjus.com/ncert-solutions-class-10-science/" target="_blank">Science</a>
+                        <a href="https://byjus.com/ncert-solutions-class-10-social-science/" target="_blank">Social Science</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Universal Calculator</p>
+    </footer>
+
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                const result = eval(document.getElementById('display').value);
+                document.getElementById('display').value = result;
+            } catch (e) {
+                alert('Invalid Expression');
+            }
+        }
+    </script>
+</body>
+</html>
